@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Signup</h1>
+
+<form action="/signup" method='post'>
+
+    <table>
+
+        <tr>
+            <td>
+                <label>Username:</label>
+            </td>
+            <td>
+                <input type="text" name="username" value= "{{ save_data['usr'] }}">
+                {% for err in list_of_errors %}
+                {% if err == "username_error" %}
+                <span class="error">That's not a valid username</span>
+                {% endif %}
+                {% endfor %}
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <label>Password:</label>
+            </td>
+            <td>
+                <input type="password" name="password">
+                {% for err in list_of_errors %}
+                {% if err == "password_error" %}
+                <span class="error">That's not a valid password</span>
+                {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Verify Password:</label>
+            </td>
+            <td>
+                <input type="password" name="verify-password">
+                {% for err in list_of_errors %}
+                {% if err == "verify-password_error" %}
+                <span class="error">Passwords don't match</span>
+                {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Email(optional):</label>
+            </td>
+            <td>
+                <input type="text" name="email" value= "{{ save_data['eml'] }}">
+                {% for err in list_of_errors %}
+                {% if err == "email_error" %}
+                <span class="error">That's not a valid email</span>
+                {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+
+
+{% endblock %}
